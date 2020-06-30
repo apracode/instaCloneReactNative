@@ -11,7 +11,7 @@ type User {
   followers: [User!]! @relation(name: "FollowRelation")
   following: [User!]! @relation(name: "FollowRelation")
   chats: [Direct]
-  loginSecret: String!
+  loginSecret: String
 }
 
 type Post {
