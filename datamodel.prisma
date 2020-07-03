@@ -5,42 +5,44 @@ type User {
   firstName:String
   lastName: String
   bio:String
-  posts: [Post!]!
-   likes: [Like!]!
-  comments: [Comment!]!
+  posts: [Post!] @relation ( name:"UserToPost", onDelete: CASCADE )
+  likes: [Like!]! @relation ( name:"UserToLike", onDelete: CASCADE )
+  comments: [Comment!]! @relation ( name:"UserToComment", onDelete: CASCADE )
   followers: [User!]! @relation(name: "FollowRelation")
   following: [User!]! @relation(name: "FollowRelation")
-  chats: [Direct]
+  chats: [Direct] 
   loginSecret: String
+  avatar: String
 }
 
 type Post {
   id: ID! @id
-  files: [File!]!
+  files: [File!]! @relation ( name:"FileToPost", onDelete: CASCADE )
   location:String
   caption: String
-  likes: [Like!]!
-  comments: [Comment!]!
-  user:User!
+  likes: [Like!]! @relation ( name:"LikeToPost", onDelete: CASCADE )
+  comments: [Comment!]!  @relation ( name:"CommentToPost", onDelete: CASCADE )
+  user:User @relation ( name:"UserToPost" )
+ 
 }
 
 type Like{
   id: ID! @id
-  user:User!
-  post:Post!
+  user:User @relation ( name:"UserToLike" )
+  post:Post @relation ( name:"LikeToPost" )
 }
 
 type Comment {
   id: ID! @id
   text:String!
-  user:User!
-  post:Post!
+  user:User @relation ( name:"UserToComment" )
+  post:Post @relation ( name:"CommentToPost" )
 }
 
 type File{
   id: ID! @id
   url: String!
-  post: Post!
+  post: Post @relation ( name:"FileToPost" )
 }
 
 type Direct{
