@@ -1,3 +1,0 @@
-type Mutation {
-  uploadPost(caption: String!, files: [String!]!): Post!
-}
