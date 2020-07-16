@@ -17,29 +17,7 @@ export const FILE_FRAGMENT = `
         url
 `;
 
-export const FULLPOST_FRAGMENT = `
-    fragment PostParts on Post {
-        id
-        caption
-        location
-        user{
-            ${USER_FRAGMENT}
-        }
-        files{
-           ${FILE_FRAGMENT}
-        }
-        likes{
-            id
-            user{
-                ${USER_FRAGMENT}
-            }
-        }
-        comments{
-            ${COMMENT_FRAGMENT}
-        }
-        
-    }
-`;
+
 
 export const ROOM_FRAGMENT = `
     fragment DirectParts on Direct {

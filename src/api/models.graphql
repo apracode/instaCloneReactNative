@@ -62,7 +62,7 @@ type File {
 type Direct {
   id: ID!
   participants: [User!]!
-  messagess: [Message]
+  messagess: [Message!]!
   createdAt: String
   updatedAt: String
 }
@@ -72,7 +72,7 @@ type Message {
   text: String!
   from: User!
   to: User!
-  direct: [Direct!]
+  direct: Direct!
   createdAt: String
   updatedAt: String
 }
