@@ -13,6 +13,7 @@ import apolloClientOptions from "./apollo";
 import styles from "./styles";
 import NavController from "./components/NavController";
 import { AuthProvider } from "./AuthContext";
+import AppNav from "./navigation";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -54,6 +55,7 @@ export default function App() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
         <AuthProvider logged={isLoggedIn}>
+          {/* <AppNav /> */}
           <NavController />
         </AuthProvider>
       </ThemeProvider>
