@@ -7,6 +7,7 @@ import useInput from "../../hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
 import { SIGN_UP, LOG_IN } from "./AuthQueries";
 import * as Facebook from "expo-facebook";
+import * as Google from "expo-google-app-auth";
 
 const View = styled.View`
   justify-content: center;
@@ -14,7 +15,7 @@ const View = styled.View`
   flex: 1;
 `;
 
-const FBContainer = styled.View`
+const Container = styled.View`
   margin-top: 10;
 `;
 
@@ -76,21 +77,14 @@ const SignUp = ({ navigation }) => {
     }
   };
 
-  const fbLogin = async () => {
+  const fbSignUp = async () => {
     try {
       setLoading(true);
       await Facebook.initializeAsync("2474834596074755");
-      const {
-        type,
-        token,
-        expires,
-        permissions,
-        declinedPermissions,
-      } = await Facebook.logInWithReadPermissionsAsync({
+      const { type, token } = await Facebook.logInWithReadPermissionsAsync({
         permissions: ["public_profile", "email"],
       });
       if (type === "success") {
-        // Get the user's name using Facebook's Graph API
         const response = await fetch(
           `https://graph.facebook.com/me?access_token=${token}&fields=id,last_name,first_name,email`
         );
@@ -103,6 +97,44 @@ const SignUp = ({ navigation }) => {
       }
     } catch ({ message }) {
       alert(`Facebook Login Error: ${message}`);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const googleSignUp = async () => {
+    try {
+      setLoading(true);
+      const result = await Google.logInAsync({
+        androidClientId:
+          "861565456664-46u1io1ulbifgu38f66d7l4jctvrrsqr.apps.googleusercontent.com",
+        iosClientId:
+          "861565456664-je1uh5b628v7bprtkmfdul55otfs45t1.apps.googleusercontent.com",
+        scopes: ["profile", "email"],
+      });
+
+      if (result.type === "success") {
+        const token = result.accessToken;
+        const userInfoResponse = await fetch(
+          "https://www.googleapis.com/userinfo/v2/me",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+        const {
+          email,
+          given_name,
+          family_name,
+        } = await userInfoResponse.json();
+        emailInput.setValue(email);
+        firstNameInput.setValue(given_name);
+        lastNameInput.setValue(family_name);
+        userNameInput.setValue(email.split("@")[0]);
+      } else {
+        return { cancelled: true };
+      }
+    } catch (e) {
+      return { error: true };
     } finally {
       setLoading(false);
     }
@@ -142,13 +174,20 @@ const SignUp = ({ navigation }) => {
             returnKeyType="go"
           />
           <AuthButton loading={loading} onPress={hadleSignUp} text="Sign Up" />
-          <FBContainer>
+          <Container>
             <AuthButton
               loading={false}
-              onPress={fbLogin}
+              onPress={fbSignUp}
               text="Sign up with FaceBook"
             />
-          </FBContainer>
+          </Container>
+          <Container>
+            <AuthButton
+              loading={false}
+              onPress={googleSignUp}
+              text="Sign up with Google"
+            />
+          </Container>
         </View>
       </TouchableWithoutFeedback>
     </>
