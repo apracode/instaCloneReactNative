@@ -8,6 +8,10 @@ import Search from "../screens/Main/Search";
 import Profile from "../screens/Main/Profile";
 import Notifications from "../screens/Main/Notifications";
 import MessagesLink from "../components/MessagesLink";
+import StoryLink from "../components/StoryLink";
+import { Ionicons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { FontAwesome } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -17,7 +21,18 @@ const HomeComponent = () => {
     <HomeStack.Navigator>
       <HomeStack.Screen
         options={({ navigation }) => ({
+          headerLeft: () => <StoryLink />,
           headerRight: () => <MessagesLink />,
+          headerTitle: (
+            <Image
+              style={{ height: 45, width: 200 }}
+              resizeMode="contain"
+              source={require("../assets/instagram.png")}
+            />
+          ),
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
           title: "Home",
         })}
         name="HomeScreen"
@@ -34,6 +49,9 @@ const SearchComponent = () => {
       <SearchStack.Screen
         options={{
           title: "Search",
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
         }}
         name="SearchScreen"
         component={Search}
@@ -49,6 +67,9 @@ const NotificationsComponent = () => {
       <NotificationsStack.Screen
         options={{
           title: "Notifications",
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
         }}
         name="NotificationsScreen"
         component={Notifications}
@@ -64,6 +85,9 @@ const ProfileComponent = () => {
       <ProfileStack.Screen
         options={{
           title: "Profile",
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
         }}
         name="ProfileScreen"
         component={Profile}
@@ -79,14 +103,51 @@ const TabNavigation = () => {
         tabStyle: {
           alignContent: "center",
           justifyContent: "center",
+          backgroundColor: "#efeeef",
         },
         labelStyle: {
           fontSize: 15,
         },
       }}
     >
-      <Tab.Screen name="HomeComponent" component={HomeComponent} />
-      <Tab.Screen name="Search" component={SearchComponent} />
+      <Tab.Screen
+        name="HomeComponent"
+        component={HomeComponent}
+        options={{
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <MaterialCommunityIcons name="home" size={30} color="black" />
+            ) : (
+              <MaterialCommunityIcons
+                name="home-outline"
+                size={30}
+                color="black"
+              />
+            ),
+        }}
+      />
+      <Tab.Screen
+        name="Search"
+        component={SearchComponent}
+        options={{
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <FontAwesome
+                style={{ height: 25 }}
+                name="search"
+                size={23}
+                color="black"
+              />
+            ) : (
+              <Ionicons
+                style={{ height: 30 }}
+                name="md-search"
+                size={30}
+                color="black"
+              />
+            ),
+        }}
+      />
       <Tab.Screen
         name="Add"
         listeners={({ navigation }) => ({
@@ -95,10 +156,34 @@ const TabNavigation = () => {
             navigation.navigate("PhotoNav");
           },
         })}
+        options={{
+          tabBarLabel: () => (
+            <Ionicons name="ios-add-circle-outline" size={30} color="black" />
+          ),
+        }}
         component={View}
       />
-      <Tab.Screen name="Notification" component={NotificationsComponent} />
-      <Tab.Screen name="Profile" component={ProfileComponent} />
+      <Tab.Screen
+        name="Notification"
+        component={NotificationsComponent}
+        options={{
+          tabBarLabel: ({ focused }) =>
+            focused ? (
+              <Ionicons name="ios-heart" size={30} color="black" />
+            ) : (
+              <Ionicons name="md-heart-empty" size={30} color="black" />
+            ),
+        }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileComponent}
+        options={{
+          tabBarLabel: () => (
+            <Ionicons name="ios-contact" size={30} color="black" />
+          ),
+        }}
+      />
     </Tab.Navigator>
   );
 };

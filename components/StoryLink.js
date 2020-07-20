@@ -5,18 +5,18 @@ import { Ionicons } from "@expo/vector-icons";
 import { useNavigation } from "@react-navigation/native";
 const Container = styled.TouchableOpacity``;
 
-const MessagesLink = () => {
+const StoryLink = () => {
   const navigation = useNavigation();
   return (
     <Container onPress={() => navigation.navigate("MessageNav")}>
       <Ionicons
         style={{ marginHorizontal: 15 }}
-        name="md-paper-plane"
-        size={30}
+        name="md-camera"
+        size={25}
         color="black"
       />
     </Container>
   );
 };
 
-export default MessagesLink;
+export default StoryLink;

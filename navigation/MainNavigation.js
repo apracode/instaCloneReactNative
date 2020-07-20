@@ -18,7 +18,7 @@ function MainNavigation() {
           component={TabNavigation}
         />
         <MainStack.Screen
-          options={{ title: "" }}
+          options={{ title: "",  }}
           name="PhotoNav"
           component={PhotoNavigation}
         />

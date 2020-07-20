@@ -9,7 +9,7 @@ const Button = styled.View`
   padding: 10px;
   margin: 0 50px;
   border-radius: 3px;
-  width: ${Constants.width / 2};
+  width: ${Constants.width / 1.7};
 `;
 const ButtonText = styled.Text`
   color: white;

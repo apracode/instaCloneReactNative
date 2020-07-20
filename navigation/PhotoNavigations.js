@@ -11,7 +11,10 @@ const PhotoTab = createMaterialTopTabNavigator();
 
 const PhotoTabs = () => {
   return (
-    <PhotoTab.Navigator tabBarPosition="bottom">
+    <PhotoTab.Navigator
+      tabBarPosition="bottom"
+      tabBarOptions={{ style: { backgroundColor: "#efeeef" } }}
+    >
       <PhotoTab.Screen name="Select" component={SelectPhoto} />
       <PhotoTab.Screen name="Take" component={TakePhoto} />
     </PhotoTab.Navigator>
@@ -24,12 +27,12 @@ const PhotoNavigation = () => {
   return (
     <PhotoStack.Navigator>
       <PhotoStack.Screen
-        options={{ title: "" }}
+        options={{ title: "", headerStyle: { backgroundColor: "#efeeef" } }}
         name="PhotoTabs"
         component={PhotoTabs}
       />
       <PhotoStack.Screen
-        options={{ title: "" }}
+        options={{ title: "", headerStyle: { backgroundColor: "#efeeef" } }}
         name="Upload"
         component={UploadPhoto}
       />
