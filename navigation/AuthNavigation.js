@@ -11,10 +11,10 @@ const AuthStack = createStackNavigator();
 function AuthNavigation() {
   return (
     <NavigationContainer>
-      <AuthStack.Navigator>
+      <AuthStack.Navigator headerMode="none">
         <AuthStack.Screen name="Home" component={AuthHome} />
-        <AuthStack.Screen name="Log In" component={LogIn} />
         <AuthStack.Screen name="Sign Up" component={SignUp} />
+        <AuthStack.Screen name="Log In" component={LogIn} />
         <AuthStack.Screen name="Confirm" component={Confirm} />
       </AuthStack.Navigator>
     </NavigationContainer>

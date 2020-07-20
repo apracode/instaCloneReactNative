@@ -6,8 +6,7 @@ import AuthNavigation from "../navigation/AuthNavigation";
 import MainNavigation from "../navigation/MainNavigation";
 
 const NavController = () => {
-  const { isLoggedIn } = false;
-  // useAuthContext()
+  const { isLoggedIn } = useAuthContext()
   return (
     <View style={{ flex: 1 }}>
       {isLoggedIn ? <MainNavigation /> : <AuthNavigation />}

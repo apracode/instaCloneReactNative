@@ -85,7 +85,7 @@ const TabNavigation = () => {
         },
       }}
     >
-      <Tab.Screen name="Home" component={HomeComponent} />
+      <Tab.Screen name="HomeComponent" component={HomeComponent} />
       <Tab.Screen name="Search" component={SearchComponent} />
       <Tab.Screen
         name="Add"

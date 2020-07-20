@@ -13,7 +13,6 @@ import apolloClientOptions from "./apollo";
 import styles from "./styles";
 import NavController from "./components/NavController";
 import { AuthProvider } from "./AuthContext";
-import AppNav from "./navigation";
 
 export default function App() {
   const [loaded, setLoaded] = useState(false);
@@ -21,6 +20,7 @@ export default function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(null);
 
   const preLoad = async () => {
+    await AsyncStorage.clear();
     try {
       await Font.loadAsync({
         ...Ionicons.font,
@@ -35,7 +35,7 @@ export default function App() {
         cache,
         ...apolloClientOptions,
       });
-      const isLoggedIn = AsyncStorage.getItem("isLoggedIn");
+      const isLoggedIn = await AsyncStorage.getItem("isLoggedIn");
       if (!isLoggedIn || isLoggedIn === "false") {
         setIsLoggedIn(false);
       } else {
@@ -55,7 +55,6 @@ export default function App() {
     <ApolloProvider client={client}>
       <ThemeProvider theme={styles}>
         <AuthProvider logged={isLoggedIn}>
-          {/* <AppNav /> */}
           <NavController />
         </AuthProvider>
       </ThemeProvider>

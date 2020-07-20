@@ -1,6 +1,8 @@
 import React from "react";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import styled from "styled-components/native";
+import Constants from "../../constants";
+import { TouchableOpacity } from "react-native";
+import AuthButton from "../../components/AuthButton";
 
 const View = styled.View`
   justify-content: center;
@@ -8,24 +10,40 @@ const View = styled.View`
   flex: 1;
 `;
 
-const Text = styled.Text`
-  font-size: 25px;
+const Image = styled.Image`
+  width: ${Constants.width / 2.5};
+  height: 100;
+`;
+
+const Link = styled.View`
+  margin-top: 25px;
+`;
+const LinkText = styled.Text`
+  color: ${(props) => props.theme.blueColor};
   text-align: center;
-  color: black;
+  font-weight: 600;
 `;
 
 const AuthHome = ({ navigation }) => {
   return (
     <View>
-      <Text>AuthHome</Text>
+      <Image
+        resizeMode="contain"
+        source={require("../../assets/instagram.png")}
+      />
+      <AuthButton
+        text="Create an account"
+        onPress={() => navigation.navigate("Sign Up")}
+      />
       <TouchableOpacity onPress={() => navigation.navigate("Log In")}>
-        <Text>Go to Log In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate("Sign Up")}>
-        <Text>Go to Sign In</Text>
+        <Link>
+          <LinkText>Log In</LinkText>
+        </Link>
       </TouchableOpacity>
     </View>
   );
 };
+
+
 
 export default AuthHome;
