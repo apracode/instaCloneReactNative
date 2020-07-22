@@ -13,7 +13,6 @@ const FooterContainer = styled.View`
 
 const PostFooter = ({ postId, isLiked, likeCount, setLikeCount }) => {
   const [liked, setLiked] = useState(isLiked);
-  console.log(isLiked);
   const [toggleLikeMutaton] = useMutation(TOGGLE_LIKE, {
     variables: {
       postId: postId,
@@ -28,7 +27,6 @@ const PostFooter = ({ postId, isLiked, likeCount, setLikeCount }) => {
     setLiked((p) => !p);
     try {
       await toggleLikeMutaton();
-      console.log(liked);
     } catch (e) {
       console.log(e);
     }

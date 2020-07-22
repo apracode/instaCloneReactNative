@@ -61,10 +61,10 @@ const Post = ({ post }) => {
         </TouchableOpacity>
         <Capture>{post.caption}</Capture>
       </CaptureContainer>
-      {post.comments ? (
-        <TouchableOpacity>
+      {post.comments.length > 0 ? (
+        <>
           <Text>See all comments ({post.comments.length})</Text>
-        </TouchableOpacity>
+        </>
       ) : null}
     </PostContainer>
   );

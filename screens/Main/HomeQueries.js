@@ -21,10 +21,11 @@ export const FEED_QUERY = gql`
       comments {
         id
         text
-        # user {
-        #   id
-        #   name
-        # }
+        user {
+          id
+          name
+          avatar
+        }
       }
     }
   }
