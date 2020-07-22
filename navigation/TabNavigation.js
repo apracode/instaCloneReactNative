@@ -12,6 +12,7 @@ import StoryLink from "../components/StoryLink";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import SearchInput from "../components/Search/SearchInput";
 
 const Tab = createBottomTabNavigator();
 
@@ -45,17 +46,8 @@ const HomeComponent = () => {
 const SearchStack = createStackNavigator();
 const SearchComponent = () => {
   return (
-    <SearchStack.Navigator>
-      <SearchStack.Screen
-        options={{
-          title: "Search",
-          headerStyle: {
-            backgroundColor: "#efeeef",
-          },
-        }}
-        name="SearchScreen"
-        component={Search}
-      />
+    <SearchStack.Navigator headerMode="none">
+      <SearchStack.Screen options={{}} name="SearchScreen" component={Search} />
     </SearchStack.Navigator>
   );
 };
