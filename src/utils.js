@@ -6,7 +6,6 @@ import "./env";
 
 export const secretGenerator = () => {
   const randomNumber = Math.floor(Math.random() * 500);
-  console.log(randomNumber);
   return `${adjectives[randomNumber]} ${nouns[randomNumber]}`;
 };
 

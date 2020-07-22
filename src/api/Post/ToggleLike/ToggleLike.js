@@ -25,6 +25,7 @@ export default {
         const existingLike = await prisma.$exists.like(filter);
         if (existingLike) {
           await prisma.deleteManyLikes(filter);
+          return false;
         } else {
           await prisma.createLike({
             user: {
@@ -38,8 +39,8 @@ export default {
               },
             },
           });
+          return true;
         }
-        return true;
       } catch (e) {}
     },
   },

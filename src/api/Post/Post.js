@@ -2,12 +2,14 @@ import { prisma } from "../../../generated/prisma-client";
 
 export default {
   Post: {
-    isLiked: async (parent, _, { request }) => {
+    isLiked: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
-      return prisma.$exists.like({
+      const liked = prisma.$exists.like({
         AND: [{ user: { id: user.id } }, { post: { id: id } }],
       });
+      console.log(liked);
+      return liked;
     },
     likeCount: (parent) =>
       prisma
