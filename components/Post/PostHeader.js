@@ -47,9 +47,9 @@ const PostHeader = ({ avatar, name, location }) => {
             />
           ) : (
             <Ionicons
-              style={{ paddingHorizontal: 15 }}
+              style={{ paddingHorizontal: 10 }}
               name="ios-contact"
-              size={30}
+              size={35}
               color="black"
             />
           )}

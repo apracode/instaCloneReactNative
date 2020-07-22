@@ -13,7 +13,7 @@ import Post from "../../components/Post/Post";
 
 const Home = () => {
   const { loading, data, refetch } = useQuery(FEED_QUERY);
-  console.log(data);
+  console.log("data", data);
   const [refreshing, setRefreshing] = useState(false);
 
   const refresh = async () => {

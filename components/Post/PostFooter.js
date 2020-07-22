@@ -11,19 +11,19 @@ const FooterContainer = styled.View`
   align-items: center;
 `;
 
-const PostFooter = ({ postId, isLiked, likeCountProp }) => {
+const PostFooter = ({ postId, isLiked, likeCount, setLikeCount }) => {
   const [liked, setLiked] = useState(isLiked);
-  const [likeCount, setLikeCount] = useState(likeCountProp);
+  console.log(isLiked);
   const [toggleLikeMutaton] = useMutation(TOGGLE_LIKE, {
     variables: {
       postId: postId,
     },
   });
   const handleLike = async () => {
-    if (isLiked === true) {
-      setLikeCount((l) => l - 1);
+    if (liked === true) {
+      setLikeCount((like) => like - 1);
     } else {
-      setLikeCount((l) => l + 1);
+      setLikeCount((like) => like + 1);
     }
     setLiked((p) => !p);
     try {

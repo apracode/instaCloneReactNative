@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import constants from "../../constants";
 import PostHeader from "./PostHeader";
@@ -38,6 +38,8 @@ const Text = styled.Text`
 `;
 
 const Post = ({ post }) => {
+  const [likeCount, setLikeCount] = useState(post.likeCount);
+
   return (
     <PostContainer>
       <PostHeader
@@ -49,20 +51,21 @@ const Post = ({ post }) => {
       <PostFooter
         postId={post.id}
         isLiked={post.isLiked}
-        likeCountProp={post.likeCount}
+        likeCount={likeCount}
+        setLikeCount={setLikeCount}
       />
-      <Likes>Likes: {post.likeCount}</Likes>
+      <Likes>Likes: {likeCount}</Likes>
       <CaptureContainer>
         <TouchableOpacity>
           <CaptureName>{post.user.name}</CaptureName>
         </TouchableOpacity>
         <Capture>{post.caption}</Capture>
       </CaptureContainer>
-      {
+      {post.comments ? (
         <TouchableOpacity>
           <Text>See all comments ({post.comments.length})</Text>
         </TouchableOpacity>
-      }
+      ) : null}
     </PostContainer>
   );
 };
