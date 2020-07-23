@@ -6,13 +6,12 @@ import { TabView, SceneMap } from "react-native-tab-view";
 import constants from "../../constants";
 import UserResult from "../../components/Search/UserResult";
 import PostResult from "../../components/Search/PostResult";
+import { FlatList } from "react-native-gesture-handler";
 
 const Search = () => {
   const [userResult, setUserResult] = useState();
   const [postResult, setPostResult] = useState();
   const [loading, setLoading] = useState(false);
-  // console.log("userResult", userResult);
-  console.log("postResult", postResult);
 
   return (
     <Container>
@@ -21,34 +20,36 @@ const Search = () => {
         setUserResult={setUserResult}
         setPostResult={setPostResult}
       />
-      <ScrollView style={{ height: constants.height }}>
-        {loading ? (
-          <ActivityIndicator style={{ marginVertical: 150 }} />
-        ) : userResult || postResult ? (
-          <>
-            {userResult ? (
-              <>
-                {userResult.searchByUser.map((item) => {
-                  console.log("item", item);
-                  return <UserResult user={item} />;
-                })}
-              </>
-            ) : null}
-            {postResult ? (
-              <>
-                {postResult.searchByPost.map((item) => {
-                  console.log("item", item);
+      {loading ? (
+        <ActivityIndicator style={{ marginVertical: 150 }} />
+      ) : userResult || postResult ? (
+        <>
+          {userResult ? (
+            <>
+              {userResult.searchByUser.map((item) => {
+                console.log("item", item);
+                return <UserResult user={item} />;
+              })}
+            </>
+          ) : null}
+          {postResult ? (
+            <>
+              <FlatList
+                style={{ height: "100%" }}
+                data={postResult.searchByPost}
+                renderItem={({ item }) => {
                   return <PostResult post={item} />;
-                })}
-              </>
-            ) : null}
-          </>
-        ) : (
-          <Text style={{ textAlign: "center", color: "grey" }}>
-            Nothing found
-          </Text>
-        )}
-      </ScrollView>
+                }}
+                numColumns={3}
+              />
+            </>
+          ) : null}
+        </>
+      ) : (
+        <Text style={{ textAlign: "center", color: "grey" }}>
+          Nothing found
+        </Text>
+      )}
     </Container>
   );
 };

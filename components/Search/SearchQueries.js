@@ -18,6 +18,12 @@ export const SEARCH_BY_POST = gql`
         url
         id
       }
+      user {
+        avatar
+        name
+      }
+      caption
+      location
     }
   }
 `;

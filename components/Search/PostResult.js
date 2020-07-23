@@ -10,10 +10,9 @@ const Image = styled.Image`
 
 const PostResult = ({ post }) => {
   return (
-    <View>
-      <Text>resulttt</Text>
+    <>
       <Image source={{ uri: post.files[0].url }} />
-    </View>
+    </>
   );
 };
 
