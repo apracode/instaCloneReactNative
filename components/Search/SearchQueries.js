@@ -14,8 +14,10 @@ export const SEARCH_BY_USER = gql`
 export const SEARCH_BY_POST = gql`
   query searchByPost($title: String!) {
     searchByPost(title: $title) {
-      caption
-      location
+      files {
+        url
+        id
+      }
     }
   }
 `;

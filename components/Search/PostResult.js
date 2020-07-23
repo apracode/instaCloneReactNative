@@ -1,12 +1,20 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from "react";
+import { View, Text } from "react-native";
+import constants from "../../constants";
+import styled from "styled-components/native";
 
-const PostResult = () => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
-}
+const Image = styled.Image`
+  width: ${constants.width / 3};
+  height: ${constants.height / 6};
+`;
 
-export default PostResult
+const PostResult = ({ post }) => {
+  return (
+    <View>
+      <Text>resulttt</Text>
+      <Image source={{ uri: post.files[0].url }} />
+    </View>
+  );
+};
+
+export default PostResult;

@@ -15,7 +15,7 @@ const Container = styled.View`
   /* justify-content: center; */
   align-items: center;
   position: relative;
-  margin-bottom:25px;
+  margin-bottom: 25px;
 `;
 
 const Input = styled.TextInput`
@@ -39,23 +39,26 @@ const SearchInput = ({ setUserResult, setPostResult, setLoading }) => {
     },
   });
 
-  const { data: PostData, refetch: PostRefetch } = useQuery(SEARCH_BY_POST, {
-    variables: {
-      title: value,
-      fetchPolicy: "network-only",
-    },
-  });
+  const { data: PostData, error: PostError, refetch: PostRefetch } = useQuery(
+    SEARCH_BY_POST,
+    {
+      variables: {
+        title: value,
+        fetchPolicy: "network-only",
+      },
+    }
+  );
 
   const handleSearch = async () => {
     setUserResult(null);
+    setLoading(true);
     setPostResult(null);
     try {
       if (value !== "") {
-        setLoading(true);
-        await UserRefetch({ variables: { name: value } });
-        setUserResult(UserData);
         await PostRefetch({ variables: { title: value } });
         setPostResult(PostData);
+        await UserRefetch({ variables: { name: value } });
+        setUserResult(UserData);
       } else {
         setUserResult(null);
         setPostResult(null);

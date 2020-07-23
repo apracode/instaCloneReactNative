@@ -11,7 +11,7 @@ const Search = () => {
   const [userResult, setUserResult] = useState();
   const [postResult, setPostResult] = useState();
   const [loading, setLoading] = useState(false);
-  console.log("userResult", userResult);
+  // console.log("userResult", userResult);
   console.log("postResult", postResult);
 
   return (
@@ -22,24 +22,29 @@ const Search = () => {
         setPostResult={setPostResult}
       />
       <ScrollView style={{ height: constants.height }}>
-        {userResult ? (
-          <>
-            {userResult.searchByUser.map((item) => {
-              console.log("item", item);
-              return <UserResult user={item} />;
-            })}
-          </>
-        ) : postResult ? (
-          <>
-            {postResult.searchByPost.map((item) => {
-              console.log("item", item);
-              return <PostResult post={item} />;
-            })}
-          </>
-        ) : loading ? (
+        {loading ? (
           <ActivityIndicator style={{ marginVertical: 150 }} />
+        ) : userResult || postResult ? (
+          <>
+            {userResult ? (
+              <>
+                {userResult.searchByUser.map((item) => {
+                  console.log("item", item);
+                  return <UserResult user={item} />;
+                })}
+              </>
+            ) : null}
+            {postResult ? (
+              <>
+                {postResult.searchByPost.map((item) => {
+                  console.log("item", item);
+                  return <PostResult post={item} />;
+                })}
+              </>
+            ) : null}
+          </>
         ) : (
-          <Text style={{ textAlign: "center", color: "grey", marginTop: 50 }}>
+          <Text style={{ textAlign: "center", color: "grey" }}>
             Nothing found
           </Text>
         )}
