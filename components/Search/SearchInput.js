@@ -4,7 +4,7 @@ import styled from "styled-components/native";
 import constants from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { SEARCH_BY_USER } from "./SearchQueries";
+import { SEARCH_BY_USER, SEARCH_BY_POST } from "./SearchQueries";
 import { useQuery } from "react-apollo-hooks";
 import useInput from "../../hooks/useInput";
 
@@ -15,6 +15,7 @@ const Container = styled.View`
   /* justify-content: center; */
   align-items: center;
   position: relative;
+  margin-bottom:25px;
 `;
 
 const Input = styled.TextInput`
@@ -28,32 +29,40 @@ const Input = styled.TextInput`
   color: grey;
 `;
 
-const SearchInput = ({ setResult, setLoading }) => {
+const SearchInput = ({ setUserResult, setPostResult, setLoading }) => {
   const [value, setValue] = useState("");
 
-  // const searchInput = useInput("");
-  const [fetch, setFetch] = useState(false);
-
-  const { loading, data, error, refetch } = useQuery(SEARCH_BY_USER, {
+  const { data: UserData, refetch: UserRefetch } = useQuery(SEARCH_BY_USER, {
     variables: {
       name: value,
-      skip: !fetch,
       fetchPolicy: "network-only",
     },
   });
 
-  // console.log(data);
+  const { data: PostData, refetch: PostRefetch } = useQuery(SEARCH_BY_POST, {
+    variables: {
+      title: value,
+      fetchPolicy: "network-only",
+    },
+  });
 
   const handleSearch = async () => {
+    setUserResult(null);
+    setPostResult(null);
     try {
-      setFetch(true);
-      setLoading(true);
-      await refetch({ variables: { name: value } });
-      setResult(data);
+      if (value !== "") {
+        setLoading(true);
+        await UserRefetch({ variables: { name: value } });
+        setUserResult(UserData);
+        await PostRefetch({ variables: { title: value } });
+        setPostResult(PostData);
+      } else {
+        setUserResult(null);
+        setPostResult(null);
+      }
     } catch (error) {
       console.log("ERROR", error);
     } finally {
-      setFetch(false);
       setLoading(false);
     }
   };

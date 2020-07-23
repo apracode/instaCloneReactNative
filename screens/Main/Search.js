@@ -1,35 +1,49 @@
 import React, { useState } from "react";
-import { Text, ActivityIndicator } from "react-native";
+import { Text, ActivityIndicator, ScrollView } from "react-native";
 import styled from "styled-components/native";
 import SearchInput from "../../components/Search/SearchInput";
+import { TabView, SceneMap } from "react-native-tab-view";
+import constants from "../../constants";
+import UserResult from "../../components/Search/UserResult";
+import PostResult from "../../components/Search/PostResult";
 
 const Search = () => {
-  const [result, setResult] = useState();
+  const [userResult, setUserResult] = useState();
+  const [postResult, setPostResult] = useState();
   const [loading, setLoading] = useState(false);
-  console.log("result", result);
+  console.log("userResult", userResult);
+  console.log("postResult", postResult);
+
   return (
     <Container>
-      <SearchInput setLoading={setLoading} setResult={setResult} />
-
-      {result ? (
-        <>
-          {result.searchByUser.map((item) => {
-            console.log("item", item);
-            return (
-              <Text
-                style={{
-                  marginVertical: 100,
-                  color: "black",
-                }}
-              >
-                {item.name}
-              </Text>
-            );
-          })}
-        </>
-      ) : loading ? (
-        <ActivityIndicator style={{ marginVertical: 150 }} />
-      ) : null}
+      <SearchInput
+        setLoading={setLoading}
+        setUserResult={setUserResult}
+        setPostResult={setPostResult}
+      />
+      <ScrollView style={{ height: constants.height }}>
+        {userResult ? (
+          <>
+            {userResult.searchByUser.map((item) => {
+              console.log("item", item);
+              return <UserResult user={item} />;
+            })}
+          </>
+        ) : postResult ? (
+          <>
+            {postResult.searchByPost.map((item) => {
+              console.log("item", item);
+              return <PostResult post={item} />;
+            })}
+          </>
+        ) : loading ? (
+          <ActivityIndicator style={{ marginVertical: 150 }} />
+        ) : (
+          <Text style={{ textAlign: "center", color: "grey", marginTop: 50 }}>
+            Nothing found
+          </Text>
+        )}
+      </ScrollView>
     </Container>
   );
 };
