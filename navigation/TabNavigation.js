@@ -100,7 +100,7 @@ const NotificationsComponent = () => {
 const ProfileStack = createStackNavigator();
 const ProfileComponent = () => {
   return (
-    <ProfileStack.Navigator>
+    <ProfileStack.Navigator headerMode="none">
       <ProfileStack.Screen
         options={{
           title: "Profile",

@@ -7,7 +7,7 @@ import {
   FlatList,
 } from "react-native";
 import styled from "styled-components/native";
-import { FEED_QUERY } from "./HomeQueries";
+import { FEED_QUERY } from "../../Queries/HomeQueries";
 import { useQuery } from "react-apollo-hooks";
 import Post from "../../components/Post/Post";
 

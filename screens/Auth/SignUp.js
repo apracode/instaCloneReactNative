@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
-import { SIGN_UP, LOG_IN } from "./AuthQueries";
+import { SIGN_UP, LOG_IN } from "../../Queries/AuthQueries";
 import * as Facebook from "expo-facebook";
 import * as Google from "expo-google-app-auth";
 

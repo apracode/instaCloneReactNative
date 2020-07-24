@@ -4,6 +4,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import constants from "../../constants";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const Header = styled.View`
   width: ${constants.width};
@@ -29,11 +30,19 @@ const Name = styled.Text`
   font-weight: 700;
 `;
 
-const PostHeader = ({ avatar, name, location }) => {
+const PostHeader = ({ avatar, name, location, user }) => {
+  const navigation = useNavigation();
   return (
     <Header>
       <PostHeaderContainer>
-        <TouchableOpacity>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate("Profile", {
+              screen: "ProfileScreen",
+              params: { userId: user },
+            })
+          }
+        >
           {avatar ? (
             <Avatar
               style={{

@@ -3,7 +3,7 @@ import { TouchableOpacity } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import styled from "styled-components/native";
 import constants from "../../constants";
-import { TOGGLE_LIKE } from "./PostMutation";
+import { TOGGLE_LIKE } from "../../Mutations/PostMutation";
 import { useMutation } from "react-apollo-hooks";
 
 const FooterContainer = styled.View`

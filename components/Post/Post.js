@@ -43,6 +43,7 @@ const Post = ({ post }) => {
   return (
     <PostContainer>
       <PostHeader
+        user={post.user.id}
         name={post.user.name}
         avatar={post.user.avatar}
         location={post.location}

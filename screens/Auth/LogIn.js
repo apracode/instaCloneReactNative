@@ -5,7 +5,7 @@ import styled from "styled-components/native";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 import { useMutation } from "react-apollo-hooks";
-import { LOG_IN } from "./AuthQueries";
+import { LOG_IN } from "../../Queries/AuthQueries";
 
 const View = styled.View`
   justify-content: center;

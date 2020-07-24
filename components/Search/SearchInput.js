@@ -4,9 +4,8 @@ import styled from "styled-components/native";
 import constants from "../../constants";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { SEARCH_BY_USER, SEARCH_BY_POST } from "./SearchQueries";
+import { SEARCH_BY_USER, SEARCH_BY_POST } from "../../Queries/SearchQueries";
 import { useQuery } from "react-apollo-hooks";
-import useInput from "../../hooks/useInput";
 
 const Container = styled.View`
   width: ${constants.width};
