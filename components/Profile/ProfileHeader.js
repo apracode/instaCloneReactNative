@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 
 const ProfileHeader = ({ title }) => {
   return (
@@ -11,9 +12,16 @@ const ProfileHeader = ({ title }) => {
         paddingTop: 14,
         justifyContent: "center",
         alignItems: "center",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
       }}
     >
-      <Text style={{ fontWeight: "600", fontSize: 20 }}>{"title"}</Text>
+      <View style={{ width: 20 }}></View>
+      <Text style={{ fontWeight: "600", fontSize: 20, textAlign: "center" }}>
+        {title}
+      </Text>
+      <Ionicons name="ios-menu" size={27} color="black" />
     </View>
   );
 };

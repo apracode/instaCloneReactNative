@@ -6,32 +6,18 @@ import { SEE_PROFILE, SEE_MY_PROFILE } from "../../Queries/ProfileQueries";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 
 const Profile = ({ navigation, route }) => {
-  const [profile, setProfile] = useState();
+  const { userId } = route.params;
 
-  useEffect(() => {
-    if (route.params !== undefined) {
-      const { userId } = route.params;
-      console.log(userId);
-      const { loading, data } = useQuery(SEE_PROFILE, {
-        variables: {
-          id: userId,
-        },
-      });
-      setProfile(data);
-    } else {
-      const { loading: myProfileLoading, data: myProfileData } = useQuery(
-        SEE_MY_PROFILE
-      );
-      setProfile(myProfileData);
-    }
-  }, []);
+  const { loading, data } = useQuery(SEE_PROFILE, {
+    variables: {
+      id: userId,
+    },
+  });
 
-  console.log(profile);
-
-  //   const user = data.seeProfile.user;
+  const user = data.seeProfile.user;
   return (
     <View>
-      <ProfileHeader />
+      <ProfileHeader title={user.name} />
     </View>
   );
 };
