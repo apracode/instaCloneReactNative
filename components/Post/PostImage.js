@@ -1,11 +1,12 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text, FlatList, Image } from "react-native";
 import styled from "styled-components/native";
 import constants from "../../constants";
 import AutoHeightImage from "react-native-auto-height-image";
 import Swiper from "react-native-swiper";
 
 const PostImage = ({ files }) => {
+  console.log(files);
   return (
     <View>
       <Swiper
@@ -18,9 +19,9 @@ const PostImage = ({ files }) => {
       >
         {files.map((item) => {
           return (
-            <AutoHeightImage
+            <Image
               key={item.id}
-              width={constants.width}
+              style={{ width: "100%", height: "100%" }}
               source={{ uri: item.url }}
               height={450}
             />

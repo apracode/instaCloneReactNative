@@ -8,7 +8,7 @@ import UserResult from "../../components/Search/UserResult";
 import PostResult from "../../components/Search/PostResult";
 import { FlatList } from "react-native-gesture-handler";
 
-const Search = () => {
+const Search = ({ navigation }) => {
   const [userResult, setUserResult] = useState();
   const [postResult, setPostResult] = useState();
   const [loading, setLoading] = useState(false);
@@ -38,7 +38,7 @@ const Search = () => {
                 style={{ height: "100%" }}
                 data={postResult.searchByPost}
                 renderItem={({ item }) => {
-                  return <PostResult post={item} />;
+                  return <PostResult navigation={navigation} post={item} />;
                 }}
                 numColumns={3}
               />

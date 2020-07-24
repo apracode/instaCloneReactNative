@@ -13,6 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import SearchInput from "../components/Search/SearchInput";
+import PostDetails from "../screens/Main/PostDetails";
 
 const Tab = createBottomTabNavigator();
 
@@ -47,8 +48,34 @@ const SearchStack = createStackNavigator();
 const SearchComponent = () => {
   return (
     <SearchStack.Navigator headerMode="none">
-      <SearchStack.Screen options={{}} name="SearchScreen" component={Search} />
+      <SearchStack.Screen
+        options={{ title: "" }}
+        name="SearchScreen"
+        component={Search}
+      />
+      <SearchStack.Screen
+        options={{}}
+        name="PostDetailsComponent"
+        component={PostDatailsComponent}
+      />
     </SearchStack.Navigator>
+  );
+};
+
+const PostStack = createStackNavigator();
+const PostDatailsComponent = () => {
+  return (
+    <PostStack.Navigator>
+      <PostStack.Screen
+        options={{
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
+        }}
+        name="PostDetails"
+        component={PostDetails}
+      />
+    </PostStack.Navigator>
   );
 };
 

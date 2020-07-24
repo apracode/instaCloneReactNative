@@ -16,6 +16,7 @@ const Container = styled.View`
   align-items: center;
   position: relative;
   margin-bottom: 25px;
+  background-color: #efeeef;
 `;
 
 const Input = styled.TextInput`
