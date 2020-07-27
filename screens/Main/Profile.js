@@ -9,20 +9,14 @@ import ProfileDetails from "../../components/Profile/ProfileDetails";
 const Profile = () => {
   const { loading, data } = useQuery(SEE_MY_PROFILE);
   return (
-    <View>
+    <>
       {loading ? (
         <ActivityIndicator />
       ) : (
         data && data.myProfile && <ProfileDetails myProfile={data.myProfile} />
       )}
-    </View>
+    </>
   );
 };
 
 export default Profile;
-
-const View = styled.View`
-  justify-content: flex-start;
-  align-items: center;
-  flex: 1;
-`;

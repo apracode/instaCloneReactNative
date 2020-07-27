@@ -9,7 +9,12 @@ const ProfileDetails = ({ myProfile, userProfile }) => {
   return (
     <>
       {myProfile ? <ProfileHeader title={profile.user.name} /> : null}
-      <AvatarAndFollowers />
+      <AvatarAndFollowers
+        avatar={profile.user.avatar}
+        posts={profile.posts.length}
+        followers={profile.user.followers.length}
+        following={profile.user.following.length}
+      />
     </>
   );
 };

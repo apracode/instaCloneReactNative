@@ -16,14 +16,14 @@ const UserProfile = ({ navigation, route }) => {
   });
 
   return (
-    <View>
+    <>
       {loading ? (
         <ActivityIndicator />
       ) : (
         data &&
         data.seeProfile && <ProfileDetails userProfile={data.seeProfile} />
       )}
-    </View>
+    </>
   );
 };
 
