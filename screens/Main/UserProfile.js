@@ -1,29 +1,43 @@
 import React, { useState, useEffect } from "react";
-import { Text, ActivityIndicator } from "react-native";
+import { Text, ActivityIndicator, RefreshControl } from "react-native";
 import styled from "styled-components/native";
 import { useQuery } from "react-apollo-hooks";
 import { SEE_PROFILE, SEE_MY_PROFILE } from "../../Queries/ProfileQueries";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
+import { ScrollView } from "react-native";
 
 const UserProfile = ({ navigation, route }) => {
-  console.log(route.params);
+  const [refreshing, setRefreshing] = useState(false);
   const { userId } = route.params;
-  const { loading, data, error } = useQuery(SEE_PROFILE, {
+  const { loading, data, refetch } = useQuery(SEE_PROFILE, {
     variables: {
       id: userId,
     },
   });
 
+  const refresh = async () => {
+    try {
+      setRefreshing(true);
+      await refetch();
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setRefreshing(false);
+    }
+  };
+
   return (
-    <>
+    <ScrollView refreshing={refreshing} refreshControl={
+      <RefreshControl refreshing={refreshing} onRefresh={refresh}/>
+    }>
       {loading ? (
         <ActivityIndicator />
       ) : (
         data &&
         data.seeProfile && <ProfileDetails userProfile={data.seeProfile} />
       )}
-    </>
+    </ScrollView>
   );
 };
 
