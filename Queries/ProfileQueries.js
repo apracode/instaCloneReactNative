@@ -8,6 +8,13 @@ export const SEE_PROFILE = gql`
         name
         firstName
         lastName
+        avatar
+        followers {
+          id
+        }
+        following {
+          id
+        }
       }
       posts {
         id

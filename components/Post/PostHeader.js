@@ -37,9 +37,9 @@ const PostHeader = ({ avatar, name, location, user }) => {
       <PostHeaderContainer>
         <TouchableOpacity
           onPress={() =>
-            navigation.navigate("Profile", {
-              screen: "ProfileScreen",
-              params: { userId: user },
+            navigation.navigate("UserProfile", {
+              screen: "UserProfileScreen",
+              params: { userId: user, username: name },
             })
           }
         >

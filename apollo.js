@@ -1,5 +1,5 @@
 const apolloClientOptions = {
-  uri: "http://192.168.0.107:4000",
+  uri: "http://192.168.1.12:4000",
 };
 
 export default apolloClientOptions;

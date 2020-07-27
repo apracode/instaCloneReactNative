@@ -14,7 +14,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
 import SearchInput from "../components/Search/SearchInput";
 import PostDetails from "../screens/Main/PostDetails";
-
+import UserProfile from "../screens/Main/UserProfile";
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
@@ -39,6 +39,24 @@ const HomeComponent = () => {
         })}
         name="HomeScreen"
         component={Home}
+      />
+      <HomeStack.Screen
+        options={({ route }) => ({
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
+          title: route.params.username,
+          headerRight: () => (
+            <MaterialCommunityIcons
+              name="dots-horizontal"
+              size={24}
+              color="black"
+              style={{ marginHorizontal: 15 }}
+            />
+          ),
+        })}
+        name={"UserProfile"}
+        component={UserProfileComponent}
       />
     </HomeStack.Navigator>
   );
@@ -112,6 +130,18 @@ const ProfileComponent = () => {
         component={Profile}
       />
     </ProfileStack.Navigator>
+  );
+};
+
+const UserProfileStack = createStackNavigator();
+const UserProfileComponent = () => {
+  return (
+    <UserProfileStack.Navigator headerMode="none">
+      <UserProfileStack.Screen
+        name="UserProfileScreen"
+        component={UserProfile}
+      />
+    </UserProfileStack.Navigator>
   );
 };
 

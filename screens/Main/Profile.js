@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Text } from "react-native";
+import { Text, ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 import { useQuery } from "react-apollo-hooks";
 import { SEE_PROFILE, SEE_MY_PROFILE } from "../../Queries/ProfileQueries";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
+import ProfileDetails from "../../components/Profile/ProfileDetails";
 
-const Profile = ({ navigation, route }) => {
-  const { userId } = route.params;
-
-  const { loading, data } = useQuery(SEE_PROFILE, {
-    variables: {
-      id: userId,
-    },
-  });
-
-  const user = data.seeProfile.user;
+const Profile = () => {
+  const { loading, data } = useQuery(SEE_MY_PROFILE);
   return (
     <View>
-      <ProfileHeader title={user.name} />
+      {loading ? (
+        <ActivityIndicator />
+      ) : (
+        data && data.myProfile && <ProfileDetails myProfile={data.myProfile} />
+      )}
     </View>
   );
 };
