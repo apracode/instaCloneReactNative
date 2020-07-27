@@ -10,6 +10,7 @@ export const SEE_PROFILE = gql`
         lastName
         avatar
         bio
+        amIFollowing
         followers {
           id
         }
@@ -34,6 +35,7 @@ export const SEE_MY_PROFILE = gql`
         lastName
         avatar
         bio
+        amIFollowing
         followers {
           id
         }

@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import styled from "styled-components/native";
 
 const Container = styled.View`
@@ -7,7 +6,7 @@ const Container = styled.View`
 `;
 
 const Name = styled.Text`
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
 `;
 

@@ -3,6 +3,7 @@ import { View, Text } from "react-native";
 import ProfileHeader from "./ProfileHeader";
 import AvatarAndFollowers from "./AvatarAndFollowers";
 import ProfileBio from "./ProfileBio";
+import ProfileButtons from "./ProfileButtons";
 
 const ProfileDetails = ({ myProfile, userProfile }) => {
   const profile = myProfile ? myProfile : userProfile;
@@ -27,6 +28,11 @@ const ProfileDetails = ({ myProfile, userProfile }) => {
             : null
         }
         bio={profile.user.bio ? profile.user.bio : null}
+      />
+      <ProfileButtons
+        following={profile.user.amIFollowing}
+        myProfile={myProfile}
+        userId={profile.user.id}
       />
     </>
   );

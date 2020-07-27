@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Text, ActivityIndicator, RefreshControl } from "react-native";
 import styled from "styled-components/native";
 import { useQuery } from "react-apollo-hooks";
-import { SEE_PROFILE, SEE_MY_PROFILE } from "../../Queries/ProfileQueries";
+import { SEE_PROFILE } from "../../Queries/ProfileQueries";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 import { ScrollView } from "react-native";
@@ -17,6 +17,7 @@ const UserProfile = ({ navigation, route }) => {
   });
 
   const refresh = async () => {
+    console.log("Refetching");
     try {
       setRefreshing(true);
       await refetch();
@@ -28,9 +29,12 @@ const UserProfile = ({ navigation, route }) => {
   };
 
   return (
-    <ScrollView refreshing={refreshing} refreshControl={
-      <RefreshControl refreshing={refreshing} onRefresh={refresh}/>
-    }>
+    <ScrollView
+      refreshing={refreshing}
+      refreshControl={
+        <RefreshControl refreshing={refreshing} onRefresh={refresh} />
+      }
+    >
       {loading ? (
         <ActivityIndicator />
       ) : (

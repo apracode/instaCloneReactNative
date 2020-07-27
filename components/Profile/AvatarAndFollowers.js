@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import { Ionicons } from "@expo/vector-icons";
 
 const Container = styled.View`
   height: 110px;
@@ -41,7 +42,15 @@ const AvatarAndFollowers = ({ avatar, posts, followers, following }) => {
   return (
     <Container>
       <AvatarContainer>
-        <Avatar source={{ uri: avatar }} />
+        {avatar ? (
+          <Avatar source={{ uri: avatar }} />
+        ) : (
+          <Ionicons
+            name="ios-contact"
+            size={105}
+            color="black"
+          />
+        )}
       </AvatarContainer>
       <NumsContainer>
         <NumberContainer>
