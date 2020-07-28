@@ -6,7 +6,7 @@ import ProfileBio from "./ProfileBio";
 import ProfileButtons from "./ProfileButtons";
 import ProfilePostsList from "./ProfilePostsList";
 
-const ProfileDetails = ({ myProfile, userProfile }) => {
+const ProfileDetails = ({ myProfile, userProfile, navigation }) => {
   const profile = myProfile ? myProfile : userProfile;
   const [followersCount, setFollowersCount] = useState(
     profile.user.followers.length
@@ -40,7 +40,11 @@ const ProfileDetails = ({ myProfile, userProfile }) => {
         setFollowersCount={setFollowersCount}
       />
       {profile.posts.length > 0 ? (
-        <ProfilePostsList posts={profile.posts} />
+        <ProfilePostsList
+          myProfile={myProfile}
+          navigation={navigation}
+          posts={profile.posts}
+        />
       ) : null}
     </>
   );

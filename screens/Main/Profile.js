@@ -11,7 +11,7 @@ import { SEE_PROFILE, SEE_MY_PROFILE } from "../../Queries/ProfileQueries";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
 import ProfileDetails from "../../components/Profile/ProfileDetails";
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
   const [refreshing, setRefreshing] = useState(false);
   const { loading, data, refetch } = useQuery(SEE_MY_PROFILE);
 
@@ -35,7 +35,10 @@ const Profile = () => {
       {loading ? (
         <ActivityIndicator />
       ) : (
-        data && data.myProfile && <ProfileDetails myProfile={data.myProfile} />
+        data &&
+        data.myProfile && (
+          <ProfileDetails navigation={navigation} myProfile={data.myProfile} />
+        )
       )}
     </ScrollView>
   );

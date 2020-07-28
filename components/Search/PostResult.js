@@ -3,13 +3,16 @@ import { View, Text } from "react-native";
 import constants from "../../constants";
 import styled from "styled-components/native";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { useNavigation } from "@react-navigation/native";
 
 const Image = styled.Image`
   width: ${constants.width / 3};
   height: ${constants.height / 6};
 `;
 
-const PostResult = ({ post, navigation }) => {
+const PostResult = ({ post }) => {
+  const navigation = useNavigation();
+
   return (
     <>
       <TouchableOpacity

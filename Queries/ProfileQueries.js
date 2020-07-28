@@ -26,6 +26,8 @@ export const SEE_PROFILE = gql`
         }
         user {
           id
+          avatar
+          name
         }
         location
         caption
@@ -78,6 +80,8 @@ export const SEE_MY_PROFILE = gql`
         id
         user {
           id
+          avatar
+          name
         }
         files {
           id

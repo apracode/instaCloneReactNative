@@ -15,6 +15,8 @@ import { FontAwesome } from "@expo/vector-icons";
 import SearchInput from "../components/Search/SearchInput";
 import PostDetails from "../screens/Main/PostDetails";
 import UserProfile from "../screens/Main/UserProfile";
+import ProfilePost from "../screens/Main/ProfilePost";
+import UserProfilePost from "../screens/Main/UserProfilePost";
 const Tab = createBottomTabNavigator();
 
 const HomeStack = createStackNavigator();
@@ -58,6 +60,16 @@ const HomeComponent = () => {
         name={"UserProfile"}
         component={UserProfileComponent}
       />
+      <HomeStack.Screen
+        options={{
+          title: "Post",
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
+        }}
+        name="UserProfilePost"
+        component={UserProfilePost}
+      />
     </HomeStack.Navigator>
   );
 };
@@ -97,6 +109,23 @@ const PostDatailsComponent = () => {
   );
 };
 
+// const ProfilePostStack = createStackNavigator();
+// const ProfilePostDatailsComponent = () => {
+//   return (
+//     <ProfilePostStack.Navigator>
+//       <ProfilePostStack.Screen
+//         options={{
+//           headerStyle: {
+//             backgroundColor: "#efeeef",
+//           },
+//         }}
+//         name="ProfilePostDetails"
+//         component={ProfilePostDetails}
+//       />
+//     </ProfilePostStack.Navigator>
+//   );
+// };
+
 const NotificationsStack = createStackNavigator();
 const NotificationsComponent = () => {
   return (
@@ -128,6 +157,16 @@ const ProfileComponent = () => {
         }}
         name="ProfileScreen"
         component={Profile}
+      />
+      <ProfileStack.Screen
+        options={{
+          title: "Post",
+          headerStyle: {
+            backgroundColor: "#efeeef",
+          },
+        }}
+        name="ProfilePost"
+        component={ProfilePost}
       />
     </ProfileStack.Navigator>
   );
