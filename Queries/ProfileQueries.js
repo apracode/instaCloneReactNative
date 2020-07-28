@@ -20,6 +20,37 @@ export const SEE_PROFILE = gql`
       }
       posts {
         id
+        files {
+          id
+          url
+        }
+        user {
+          id
+        }
+        location
+        caption
+        likes {
+          id
+          user {
+            id
+          }
+          post {
+            id
+          }
+        }
+        comments {
+          id
+          text
+          user {
+            id
+            name
+          }
+          post {
+            id
+          }
+        }
+        isLiked
+        likeCount
       }
     }
   }
@@ -45,6 +76,37 @@ export const SEE_MY_PROFILE = gql`
       }
       posts {
         id
+        user {
+          id
+        }
+        files {
+          id
+          url
+        }
+        location
+        caption
+        likes {
+          id
+          user {
+            id
+          }
+          post {
+            id
+          }
+        }
+        comments {
+          id
+          text
+          user {
+            id
+            name
+          }
+          post {
+            id
+          }
+        }
+        isLiked
+        likeCount
       }
     }
   }

@@ -64,27 +64,6 @@ const ProfileButtons = ({
     }
   };
 
-  //   const handleFollow = async () => {
-  //     console.log("HERE");
-  //     if (isFollowing === true) {
-  //       setIsFollowing(false);
-  //       try {
-  //         await unfollowUserMutaton();
-  //         console.log("Try unfollow");
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     } else {
-  //       setIsFollowing(true);
-  //       try {
-  //         await followUserMutaton();
-  //         console.log("Try follow");
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
-
   return (
     <Container>
       {myProfile ? (

@@ -4,6 +4,7 @@ import ProfileHeader from "./ProfileHeader";
 import AvatarAndFollowers from "./AvatarAndFollowers";
 import ProfileBio from "./ProfileBio";
 import ProfileButtons from "./ProfileButtons";
+import ProfilePostsList from "./ProfilePostsList";
 
 const ProfileDetails = ({ myProfile, userProfile }) => {
   const profile = myProfile ? myProfile : userProfile;
@@ -38,6 +39,9 @@ const ProfileDetails = ({ myProfile, userProfile }) => {
         userId={profile.user.id}
         setFollowersCount={setFollowersCount}
       />
+      {profile.posts.length > 0 ? (
+        <ProfilePostsList posts={profile.posts} />
+      ) : null}
     </>
   );
 };
