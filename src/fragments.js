@@ -8,7 +8,9 @@ export const COMMENT_FRAGMENT = `
         id
         text
         user{
-            ${USER_FRAGMENT}
+            id
+            name
+            avatar
         }
 `;
 
@@ -16,8 +18,6 @@ export const FILE_FRAGMENT = `
         id
         url
 `;
-
-
 
 export const ROOM_FRAGMENT = `
     fragment DirectParts on Direct {

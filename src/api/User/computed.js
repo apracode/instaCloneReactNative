@@ -5,6 +5,8 @@ export default {
     fullName: (parent) => {
       return `${parent.firstName} ${parent.lastName}`;
     },
+    following: ({ id }) => prisma.user({ id }).following(),
+    followers: ({ id }) => prisma.user({ id }).followers(),
     amIFollowing: async (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
@@ -13,6 +15,7 @@ export default {
       });
       return exist;
     },
+    posts: ({ id }) => prisma.user({ id }).posts(),
     itsMe: (parent, _, { request }) => {
       const { user } = request;
       const { id } = parent;
