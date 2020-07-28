@@ -27,7 +27,12 @@ const ButtonText = styled.Text`
   font-size: 15px;
 `;
 
-const ProfileButtons = ({ myProfile, following, userId }) => {
+const ProfileButtons = ({
+  myProfile,
+  following,
+  userId,
+  setFollowersCount,
+}) => {
   const [isFollowing, setIsFollowing] = useState(following);
   const [followUserMutaton] = useMutation(FOLLOW_USER, {
     variables: {
@@ -41,7 +46,7 @@ const ProfileButtons = ({ myProfile, following, userId }) => {
   });
   const handleFollow = async () => {
     setIsFollowing(true);
-    console.log(await followUserMutaton());
+    setFollowersCount((follower) => follower + 1);
     try {
       await followUserMutaton();
     } catch (error) {
@@ -51,8 +56,7 @@ const ProfileButtons = ({ myProfile, following, userId }) => {
 
   const handleUnFollow = async () => {
     setIsFollowing(false);
-    console.log(await unfollowUserMutaton());
-
+    setFollowersCount((follower) => follower - 1);
     try {
       await unfollowUserMutaton();
     } catch (error) {
