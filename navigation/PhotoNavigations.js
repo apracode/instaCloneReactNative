@@ -15,8 +15,16 @@ const PhotoTabs = () => {
       tabBarPosition="bottom"
       tabBarOptions={{ style: { backgroundColor: "#efeeef" } }}
     >
-      <PhotoTab.Screen name="Select" component={SelectPhoto} />
-      <PhotoTab.Screen name="Take" component={TakePhoto} />
+      <PhotoTab.Screen
+        options={{ title: "Library" }}
+        name="Select"
+        component={SelectPhoto}
+      />
+      <PhotoTab.Screen
+        options={{ title: "Photo" }}
+        name="Take"
+        component={TakePhoto}
+      />
     </PhotoTab.Navigator>
   );
 };
