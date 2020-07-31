@@ -10,11 +10,12 @@ import {
   TouchableOpacity,
 } from "react-native-gesture-handler";
 
-const SelectPhoto = () => {
+const SelectPhoto = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
   const [hasPermission, setHasPermission] = useState(false);
   const [selected, setSelected] = useState();
   const [allPhotos, setAllPhotos] = useState();
+  console.log("selected", selected);
 
   const getPhotos = async () => {
     try {
@@ -25,6 +26,12 @@ const SelectPhoto = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleSelected = () => {
+    navigation.navigate("PhotoNav", {
+      screen: "Upload",
+      params: { photo: selected },
+    });
   };
 
   const askPermission = async () => {
@@ -55,10 +62,24 @@ const SelectPhoto = () => {
           {hasPermission ? (
             <>
               <Image
-                style={{ width: constants.width, height: constants.height / 2 }}
+                style={{
+                  width: constants.width,
+                  height: constants.height / 2,
+                }}
                 resizeMode={"contain"}
                 source={{ uri: selected && selected.uri }}
               />
+              <TouchableOpacity
+                onPress={handleSelected}
+                style={{
+                  alignSelf: "center",
+                  padding: 10,
+                  backgroundColor: "#3897f0",
+                  borderRadius: 5,
+                }}
+              >
+                <Text style={{ color: "white" }}>Upload</Text>
+              </TouchableOpacity>
               <FlatList
                 data={allPhotos}
                 numColumns={3}

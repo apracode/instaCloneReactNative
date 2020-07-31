@@ -40,7 +40,10 @@ const PhotoNavigation = () => {
         component={PhotoTabs}
       />
       <PhotoStack.Screen
-        options={{ title: "", headerStyle: { backgroundColor: "#efeeef" } }}
+        options={{
+          title: "Upload",
+          headerStyle: { backgroundColor: "#efeeef" },
+        }}
         name="Upload"
         component={UploadPhoto}
       />

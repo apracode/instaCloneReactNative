@@ -15,6 +15,8 @@ const Home = () => {
   const { loading, data, refetch } = useQuery(FEED_QUERY);
   const [refreshing, setRefreshing] = useState(false);
 
+  console.log(data, "dataHome");
+
   const refresh = async () => {
     try {
       setRefreshing(true);
