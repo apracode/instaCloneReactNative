@@ -15,7 +15,6 @@ const SelectPhoto = ({ navigation }) => {
   const [hasPermission, setHasPermission] = useState(false);
   const [selected, setSelected] = useState();
   const [allPhotos, setAllPhotos] = useState();
-  console.log("selected", selected);
 
   const getPhotos = async () => {
     try {

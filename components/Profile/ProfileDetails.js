@@ -11,7 +11,6 @@ const ProfileDetails = ({ myProfile, userProfile, navigation }) => {
   const [followersCount, setFollowersCount] = useState(
     profile.user.followers.length
   );
-  console.log(profile);
   return (
     <>
       {myProfile ? <ProfileHeader title={profile.user.name} /> : null}

@@ -27,7 +27,6 @@ const Search = ({ navigation }) => {
           {userResult ? (
             <>
               {userResult.searchByUser.map((item) => {
-                console.log("item", item);
                 return <UserResult user={item} />;
               })}
             </>

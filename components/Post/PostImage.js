@@ -6,7 +6,6 @@ import AutoHeightImage from "react-native-auto-height-image";
 import Swiper from "react-native-swiper";
 
 const PostImage = ({ files }) => {
-  console.log(files);
   return (
     <View>
       <Swiper

@@ -35,7 +35,6 @@ export default function App() {
         cache,
         request: async (operation) => {
           const token = await AsyncStorage.getItem("jwt");
-          // console.log(token);
           return operation.setContext({
             headers: {
               Authorization: `Bearer ${token}`,

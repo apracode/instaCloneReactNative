@@ -43,7 +43,6 @@ const UploadPhoto = ({ route, navigation }) => {
           "content-type": "multipart/form-data",
         },
       });
-      console.log("location", location);
       const {
         data: { uploadPost },
       } = await uploadMutation({
@@ -56,7 +55,6 @@ const UploadPhoto = ({ route, navigation }) => {
       if (uploadPost.id) {
         navigation.navigate("Tab");
       }
-      console.log(uploadPost);
     } catch (error) {
       Alert.alert("Can't upload");
     } finally {

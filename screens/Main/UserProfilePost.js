@@ -4,7 +4,6 @@ import Post from "../../components/Post/Post";
 
 const UserProfilePost = ({ route, navigation }) => {
   const { post } = route.params;
-  console.log(post);
   return (
     <ScrollView style={{ height: "100%" }}>
       <Post post={post} />

@@ -50,7 +50,7 @@ const ProfileButtons = ({
     try {
       await followUserMutaton();
     } catch (error) {
-      console.log("Try follow", error);
+      console.log(error);
     }
   };
 
@@ -60,7 +60,7 @@ const ProfileButtons = ({
     try {
       await unfollowUserMutaton();
     } catch (error) {
-      console.log("Try unfollow", error);
+      console.log(error);
     }
   };
 

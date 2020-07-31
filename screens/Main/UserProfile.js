@@ -17,7 +17,6 @@ const UserProfile = ({ navigation, route }) => {
   });
 
   const refresh = async () => {
-    console.log("Refetching");
     try {
       setRefreshing(true);
       await refetch();

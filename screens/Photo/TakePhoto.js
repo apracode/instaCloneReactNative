@@ -33,7 +33,6 @@ const TakePhoto = ({ navigation }) => {
       });
       const asset = await MediaLibrary.createAssetAsync(uri);
       navigation.navigate("Upload", { photo: asset });
-      console.log(uri);
     } catch (error) {
       console.log(error);
       setCanTakePhoto(true);
