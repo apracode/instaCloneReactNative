@@ -5,6 +5,7 @@ import { Alert, ActivityIndicator } from "react-native";
 import { UPLOAD_POST } from "../../Mutations/PostMutation";
 import { useMutation } from "react-apollo-hooks";
 import { FEED_QUERY } from "../../Queries/HomeQueries";
+import { SEE_MY_PROFILE } from "../../Queries/ProfileQueries";
 
 const UploadPhoto = ({ route, navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -18,6 +19,7 @@ const UploadPhoto = ({ route, navigation }) => {
       {
         query: FEED_QUERY,
       },
+      { query: SEE_MY_PROFILE },
     ],
   });
 

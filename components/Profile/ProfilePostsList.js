@@ -11,7 +11,7 @@ const ProfilePostsList = ({ posts, myProfile }) => {
     <View>
       <FlatList
         style={{ height: "100%" }}
-        data={posts}
+        data={posts.reverse()}
         renderItem={({ item }) => {
           return (
             <TouchableOpacity
