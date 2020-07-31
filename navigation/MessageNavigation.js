@@ -24,13 +24,13 @@ const MessageNavigator = () => {
             />
           ),
         })}
-        name="Message"
-        component={Message}
+        name="Messages"
+        component={Messages}
       />
       <MessageStack.Screen
         options={{ title: "" }}
-        name="Messages"
-        component={Messages}
+        name="Message"
+        component={Message}
       />
     </MessageStack.Navigator>
   );
