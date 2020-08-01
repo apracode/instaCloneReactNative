@@ -14,16 +14,16 @@ export const SEE_ROOMS = gql`
       messagess {
         id
         text
-        # from {
-        #   id
-        #   name
-        #   avatar
-        # }
-        # to {
-        #   id
-        #   name
-        #   avatar
-        # }
+        from {
+          id
+          name
+          avatar
+        }
+        to {
+          id
+          name
+          avatar
+        }
       }
     }
   }

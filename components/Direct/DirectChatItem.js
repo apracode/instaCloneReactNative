@@ -6,7 +6,6 @@ import { Feather } from "@expo/vector-icons";
 
 const DirectChatItem = ({ messagess, participants, myId }) => {
   const user = participants[0].id === myId ? participants[1] : participants[0];
-  console.log(participants);
   return (
     <Container>
       <AvatarContainer>

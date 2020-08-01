@@ -50,6 +50,7 @@ const Messages = ({ navigation }) => {
                   onPress={() =>
                     navigation.navigate("Message", {
                       messagess: item.messagess,
+                      myId: myId,
                     })
                   }
                 >
