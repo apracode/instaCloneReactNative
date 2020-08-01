@@ -38,7 +38,7 @@ const UploadPhoto = ({ route, navigation }) => {
       setLoading(true);
       const {
         data: { location },
-      } = await axios.post("http://192.168.0.106:4000/api/upload", formData, {
+      } = await axios.post("http://192.168.0.100:4000/api/upload", formData, {
         headers: {
           "content-type": "multipart/form-data",
         },

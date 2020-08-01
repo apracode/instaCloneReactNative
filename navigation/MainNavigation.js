@@ -15,6 +15,11 @@ function MainNavigation() {
       <MainStack.Navigator headerMode="none" mode={"modal"}>
         <MainStack.Screen
           options={{ title: "" }}
+          name="MessageNav"
+          component={MessageNavigator}
+        />
+        <MainStack.Screen
+          options={{ title: "" }}
           name="Tab"
           component={TabNavigation}
         />
@@ -23,11 +28,7 @@ function MainNavigation() {
           name="PhotoNav"
           component={PhotoNavigation}
         />
-        <MainStack.Screen
-          options={{ title: "" }}
-          name="MessageNav"
-          component={MessageNavigator}
-        />
+
         {/* <MainStack.Screen
           options={{ title: "" }}
           name="PostDetailsComponent"

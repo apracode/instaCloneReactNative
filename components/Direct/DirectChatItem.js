@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components/native";
 import { View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Feather } from "@expo/vector-icons";
 
-const DirectChatItem = ({ participants, myId }) => {
-  console.log(participants);
+const DirectChatItem = ({ messagess, participants, myId }) => {
   const user = participants[0].id === myId ? participants[1] : participants[0];
-
-  console.log(user);
-
+  console.log(participants);
   return (
     <Container>
       <AvatarContainer>
@@ -18,16 +16,26 @@ const DirectChatItem = ({ participants, myId }) => {
           <Ionicons
             style={{ paddingHorizontal: 10 }}
             name="ios-contact"
-            size={35}
+            size={60}
             color="black"
           />
         )}
       </AvatarContainer>
       <UserInfoContainer>
-        <UserName></UserName>
-        <Message></Message>
+        <UserName>
+          {user.firstName && user.lastName
+            ? `${user.firstName} ${user.lastName}`
+            : user.firstName
+            ? user.firstName
+            : user.lastName
+            ? user.lastName
+            : user.name}
+        </UserName>
+        <Message>{messagess[messagess.length - 1].text}</Message>
       </UserInfoContainer>
-      <PhotoIcon />
+      <PhotoIcon>
+        <Feather name="camera" size={24} color="grey" />
+      </PhotoIcon>
     </Container>
   );
 };
@@ -35,32 +43,36 @@ const DirectChatItem = ({ participants, myId }) => {
 export default DirectChatItem;
 
 const Container = styled.View`
-  background-color: green;
   width: 100%;
+  height: 60px;
   flex-direction: row;
+  align-items: center;
   padding: 0 10px;
+  margin: 5px 0;
 `;
 
 const AvatarContainer = styled.View`
-  background-color: red;
   width: 20%;
 `;
 const Avatar = styled.Image`
-  background-color: blue;
-  height: 25px;
-  width: 25px;
+  height: 50px;
+  width: 50px;
+  border-radius: 50px;
+  padding: 0 15px;
+  align-self: center;
 `;
 
 const UserInfoContainer = styled.View`
-  background-color: black;
+  width: 70%;
 `;
 const UserName = styled.Text`
-  background-color: yellow;
+  margin-bottom: 2px;
+  font-weight: 500;
+  font-size: 15px;
 `;
 const Message = styled.Text`
-  background-color: pink;
+  font-size: 14px;
+  color: #8a8a8a;
 `;
 
-const PhotoIcon = styled.View`
-  background-color: grey;
-`;
+const PhotoIcon = styled.View``;
