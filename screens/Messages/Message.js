@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   KeyboardAvoidingView,
@@ -11,17 +11,60 @@ import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { FlatList } from "react-native-gesture-handler";
 import MessageItem from "../../components/Direct/MessageItem";
+import { useMutation, useSubscription } from "react-apollo-hooks";
+import { SEND_MESSAGE, NEW_MESSAGE } from "../../Mutations/MessageMutation";
+import withSuspense from "../../withSuspens";
+import { SEE_ROOMS } from "../../Queries/MessageQueries";
 
 const Message = ({ route }) => {
-  const { messagess, myId } = route.params;
+  const { messagess, myId, roomId, to } = route.params;
+  console.log(roomId);
 
-  const [padding, setPadding] = useState(0);
+  // const [padding, setPadding] = useState(0);
   const [textMessage, setTextMessage] = useState("");
 
   const [chatFlex, setChatFlex] = useState(0.91);
   const [inputFlex, setInputFlex] = useState(0.09);
 
-  console.log(messagess);
+  const [sendMessageMutation] = useMutation(SEND_MESSAGE, {
+    variables: {
+      message: textMessage,
+      roomId: roomId,
+      to: to,
+    },
+  });
+
+  const { data, error, loading } = useSubscription(NEW_MESSAGE, {
+    variables: {
+      roomId: roomId,
+    },
+  });
+  const [messages, setMessages] = useState(messagess || []);
+
+  const handleNewMessage = () => {
+    if (data !== undefined && data.newMessage !== null) {
+      const { newMessage } = data;
+      setMessages((previous) => [...previous, newMessage]);
+    }
+  };
+  useEffect(() => {
+    handleNewMessage();
+  }, [data]);
+
+  console.log(data);
+
+  const onSubmit = async () => {
+    if (textMessage === "") {
+      return;
+    }
+    try {
+      setTextMessage("");
+      await sendMessageMutation();
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <View style={{ flex: 1, backgroundColor: "white" }}>
       <View style={{ flex: chatFlex }}>
@@ -31,12 +74,12 @@ const Message = ({ route }) => {
               width: "100%",
             }}
             inverted={true}
-            data={messagess}
+            data={messages}
             renderItem={({ item, index }) => {
               if (
                 item.from.id === myId &&
-                messagess[index - 1] &&
-                messagess[index - 1].from.id !== myId
+                messages[index - 1] &&
+                messages[index - 1].from.id !== myId
               ) {
                 return <MessageItem last key={index} text={item.text} fromMe />;
               }
@@ -45,8 +88,8 @@ const Message = ({ route }) => {
               }
               if (
                 item.from.id !== myId &&
-                messagess[index - 1] &&
-                messagess[index - 1].from.id === myId
+                messages[index - 1] &&
+                messages[index - 1].from.id === myId
               ) {
                 return (
                   <MessageItem
@@ -69,7 +112,7 @@ const Message = ({ route }) => {
         style={{
           flex: inputFlex,
           backgroundColor: "white",
-          paddingBottom: padding,
+          // paddingBottom: padding,
         }}
       >
         <CameraIconContainer>
@@ -77,7 +120,7 @@ const Message = ({ route }) => {
         </CameraIconContainer>
         {textMessage !== "" ? (
           <SendButtonContainer>
-            <SendButton>
+            <SendButton onPress={() => onSubmit()}>
               <SendButtonText>Send</SendButtonText>
             </SendButton>
           </SendButtonContainer>

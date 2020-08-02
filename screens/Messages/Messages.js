@@ -44,13 +44,20 @@ const Messages = ({ navigation }) => {
             style={{ height: "100%" }}
             data={dataRooms.seeRooms}
             renderItem={({ item }) => {
-              console.log(item, "item");
+              console.log(item.participants, "item");
+              const user =
+                item.participants[0].id === myId
+                  ? item.participants[1]
+                  : item.participants[0];
+
               return (
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("Message", {
                       messagess: item.messagess.reverse(),
                       myId: myId,
+                      roomId: item.id,
+                      to: user.id,
                     })
                   }
                 >
