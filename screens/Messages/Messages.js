@@ -49,7 +49,7 @@ const Messages = ({ navigation }) => {
                 <TouchableOpacity
                   onPress={() =>
                     navigation.navigate("Message", {
-                      messagess: item.messagess,
+                      messagess: item.messagess.reverse(),
                       myId: myId,
                     })
                   }

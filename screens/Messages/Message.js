@@ -1,100 +1,111 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,
-  Dimensions,
 } from "react-native";
 import styled from "styled-components/native";
 import { Entypo } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { useKeyboard } from "react-native-keyboard-height";
 import { FlatList } from "react-native-gesture-handler";
 import MessageItem from "../../components/Direct/MessageItem";
 
 const Message = ({ route }) => {
   const { messagess, myId } = route.params;
 
-  const [margin, setMargin] = useState(0);
+  const [padding, setPadding] = useState(0);
   const [textMessage, setTextMessage] = useState("");
+
+  const [chatFlex, setChatFlex] = useState(0.91);
+  const [inputFlex, setInputFlex] = useState(0.09);
 
   console.log(messagess);
   return (
-    <KeyboardAvoidingView behavior={"padding"} style={{ flex: 1 }}>
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{ flex: 1 }}>
-          <View style={{ flex: 0.91, backgroundColor: "white" }}>
-            <FlatList
-              style={{
-                width: "100%",
-                height: "100%",
-                flex: 1,
-                paddingVertical: 5,
-              }}
-              data={messagess}
-              renderItem={({ item, index }) => {
-                if (
-                  item.from.id === myId &&
-                  messagess[index + 1] &&
-                  messagess[index + 1].from.id !== myId
-                ) {
-                  return (
-                    <MessageItem last key={index} text={item.text} fromMe />
-                  );
-                }
-                if (item.from.id === myId) {
-                  return <MessageItem key={index} text={item.text} fromMe />;
-                }
-                if (
-                  item.from.id !== myId &&
-                  messagess[index + 1] &&
-                  messagess[index + 1].from.id === myId
-                ) {
-                  return <MessageItem last key={index} text={item.text} toMe />;
-                } else {
-                  return <MessageItem key={index} text={item.text} toMe />;
-                }
-              }}
-            />
-          </View>
-          <InputContainer
+    <View style={{ flex: 1, backgroundColor: "white" }}>
+      <View style={{ flex: chatFlex }}>
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <FlatList
             style={{
-              flex: 0.09,
-              backgroundColor: "white",
-              marginBottom: margin,
+              width: "100%",
             }}
-          >
-            <CameraIconContainer>
-              <Entypo name="camera" size={22} color="white" />
-            </CameraIconContainer>
-            {textMessage !== "" ? (
-              <SendButtonContainer>
-                <SendButton>
-                  <SendButtonText>Send</SendButtonText>
-                </SendButton>
-              </SendButtonContainer>
-            ) : (
-              <TreeIconsContainer>
-                <FontAwesome5 name="microphone-alt" size={24} color="black" />
-                <AntDesign name="picture" size={24} color="black" />
-                <AntDesign name="pluscircle" size={24} color="black" />
-              </TreeIconsContainer>
-            )}
+            inverted={true}
+            data={messagess}
+            renderItem={({ item, index }) => {
+              if (
+                item.from.id === myId &&
+                messagess[index - 1] &&
+                messagess[index - 1].from.id !== myId
+              ) {
+                return <MessageItem last key={index} text={item.text} fromMe />;
+              }
+              if (item.from.id === myId) {
+                return <MessageItem key={index} text={item.text} fromMe />;
+              }
+              if (
+                item.from.id !== myId &&
+                messagess[index - 1] &&
+                messagess[index - 1].from.id === myId
+              ) {
+                return (
+                  <MessageItem
+                    avatar={item.from.avatar}
+                    last
+                    key={index}
+                    text={item.text}
+                    toMe
+                  />
+                );
+              } else {
+                return <MessageItem key={index} text={item.text} toMe />;
+              }
+            }}
+          />
+        </TouchableWithoutFeedback>
+      </View>
 
-            <Input
-              placeholder="Send message..."
-              onFocus={() => setMargin(80)}
-              onBlur={() => setMargin(0)}
-              value={textMessage}
-              onChangeText={(text) => setTextMessage(text)}
-            />
-          </InputContainer>
-        </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
+      <InputContainer
+        style={{
+          flex: inputFlex,
+          backgroundColor: "white",
+          paddingBottom: padding,
+        }}
+      >
+        <CameraIconContainer>
+          <Entypo name="camera" size={22} color="white" />
+        </CameraIconContainer>
+        {textMessage !== "" ? (
+          <SendButtonContainer>
+            <SendButton>
+              <SendButtonText>Send</SendButtonText>
+            </SendButton>
+          </SendButtonContainer>
+        ) : (
+          <TreeIconsContainer>
+            <FontAwesome5 name="microphone-alt" size={24} color="black" />
+            <AntDesign name="picture" size={24} color="black" />
+            <AntDesign name="pluscircle" size={24} color="black" />
+          </TreeIconsContainer>
+        )}
+
+        <Input
+          placeholder="Send message..."
+          onFocus={() => {
+            setChatFlex(0.56);
+            {
+              /* setInputFlex(0.35); */
+            }
+          }}
+          onBlur={() => {
+            setChatFlex(0.91);
+            setInputFlex(0.09);
+          }}
+          value={textMessage}
+          onChangeText={(text) => setTextMessage(text)}
+        />
+      </InputContainer>
+    </View>
   );
 };
 
@@ -103,7 +114,7 @@ export default Message;
 const Input = styled.TextInput`
   height: 40px;
   margin: 5px 10px;
-  padding: 5px 0;
+  padding: 0 0 5px 0;
   padding-left: 45px;
   border-radius: 50px;
   background-color: white;
