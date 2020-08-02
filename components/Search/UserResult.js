@@ -7,7 +7,6 @@ const Container = styled.View`
   height: 55px;
   flex-direction: row;
   align-items: center;
-  /* padding: 0 20px; */
 `;
 
 const AvatarContainer = styled.View``;

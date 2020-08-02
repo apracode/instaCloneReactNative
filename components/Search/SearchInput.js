@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import {} from "react-native";
 import styled from "styled-components/native";
 import constants from "../../constants";
 import { Ionicons } from "@expo/vector-icons";

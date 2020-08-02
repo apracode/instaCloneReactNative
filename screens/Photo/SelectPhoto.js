@@ -5,7 +5,6 @@ import * as Permissions from "expo-permissions";
 import * as MediaLibrary from "expo-media-library";
 import constants from "../../constants";
 import {
-  ScrollView,
   FlatList,
   TouchableOpacity,
 } from "react-native-gesture-handler";

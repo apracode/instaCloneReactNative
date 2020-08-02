@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { View, Text } from "react-native";
 import ProfileHeader from "./ProfileHeader";
 import AvatarAndFollowers from "./AvatarAndFollowers";
 import ProfileBio from "./ProfileBio";

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text, TouchableOpacity, ActivityIndicator } from "react-native";
+import { TouchableOpacity, ActivityIndicator } from "react-native";
 import styled from "styled-components/native";
 import * as Permissions from "expo-permissions";
 import * as MediaLibrary from "expo-media-library";

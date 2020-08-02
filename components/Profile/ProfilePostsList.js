@@ -1,8 +1,7 @@
 import React from "react";
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import { View, FlatList, TouchableOpacity, Image } from "react-native";
 import constants from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-import PostResult from "../Search/PostResult";
 
 const ProfilePostsList = ({ posts, myProfile }) => {
   const navigation = useNavigation();

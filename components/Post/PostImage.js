@@ -1,8 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, Image } from "react-native";
-import styled from "styled-components/native";
-import constants from "../../constants";
-import AutoHeightImage from "react-native-auto-height-image";
+import { View, Image } from "react-native";
 import Swiper from "react-native-swiper";
 
 const PostImage = ({ files }) => {
