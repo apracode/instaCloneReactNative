@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "@babel/preset-env": "^7.10.2",
-    "aws-sdk": "^2.724.0",
+    "aws-sdk": "^2.814.0",
     "babel-node": "0.0.1-security",
     "dotenv": "^8.2.0",
     "graphql-tools": "^6.0.9",
